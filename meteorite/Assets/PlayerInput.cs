@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput
 {
     int playerNum;
 
@@ -28,4 +29,9 @@ public class PlayerInput : MonoBehaviour
 	{
 		return Input.GetAxis("Player" + playerNum + "LeftTrigger");
 	}
+
+    public bool getSwitchWeapons()
+    {
+		return Input.GetButtonDown("Player" + playerNum + "SwitchWeapons");
+    }
 }

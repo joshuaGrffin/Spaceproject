@@ -475,8 +475,8 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
+    altNegativeButton: a
+    altPositiveButton: d
     gravity: 0
     dead: 0.19
     sensitivity: 1
@@ -491,8 +491,8 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: 
-    altNegativeButton: 
-    altPositiveButton: 
+    altNegativeButton: s
+    altPositiveButton: w
     gravity: 0
     dead: 0.19
     sensitivity: 1
@@ -564,6 +564,22 @@ InputManager:
     invert: 0
     type: 2
     axis: 8
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: Player1SwitchWeapons
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: joystick button 3
+    altNegativeButton: 
+    altPositiveButton: q
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
     joyNum: 1
   - serializedVersion: 3
     m_Name: Debug Horizontal

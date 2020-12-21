@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     GameObject visuals;
-    
+    [SerializeField]
+    float YawAngle;
+
+
+    Vector2 thrustDirection;
     Vector2 rot;
     
     float angle = 0;
@@ -36,31 +40,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        thrustDirection = pInput.GetInput_LeftStick();
         rotate();
         actions();  
     }
 
     private void FixedUpdate()
     {
-        rb.AddRelativeForce(pInput.0() * thrust);
+        rb.AddRelativeForce(thrustDirection * thrust);
     }
 
     void actions()
     {
-        if (pInput.GetFire() > 0.2f)
+        //switch weapons
+        if (pInput.getSwitchWeapons())
         {
-            //if i can fire then
-            
-            Debug.Log("fire");
-            
-        }
-        if (pInput.GetShield() > 0.2f)
-        {
-            Debug.Log("shield");
-        }
-        else
-        {
-            //turn off the shield
+            Debug.Log("switched weapons");
         }
 
     }
@@ -72,6 +67,7 @@ public class PlayerController : MonoBehaviour
             angle = Mathf.Atan2(rot.x, rot.y) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, new Vector3(0, 0, -angle), 1);
         }
+        visuals.transform.localEulerAngles = Vector3.Lerp(visuals.transform.eulerAngles, new Vector3(0, -thrustDirection.x * YawAngle, visuals.transform.localEulerAngles.z), 1);
     }
 
     public void init()

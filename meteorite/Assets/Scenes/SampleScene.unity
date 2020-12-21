@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 1379279114}
   - component: {fileID: 1379279113}
   m_Layer: 0
-  m_Name: Visuals
+  m_Name: VisualsFolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,6 +459,7 @@ MonoBehaviour:
   m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -495,7 +496,8 @@ MonoBehaviour:
   shipDef: {fileID: 11400000, guid: ed81e9fc69c02014e843ca73b1a8459b, type: 2}
   thrust: 5
   playerNumber: 1
-  visuals: {fileID: 0}
+  visuals: {fileID: 1379279111}
+  YawAngle: 25
 --- !u!4 &1796798627
 Transform:
   m_ObjectHideFlags: 0
@@ -604,6 +606,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 3.9657e-41, z: 0, w: 9}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &2138677393
