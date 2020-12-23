@@ -1,13 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-[CreateAssetMenu(fileName = "Weapon", menuName ="CreateWeapon/Weapon")]
-public class Weapon : ScriptableObject
+﻿using UnityEngine;
+[System.Serializable]
+public enum WeaponTypes
 {
-    //stats 
-    float damage;
-    float fireRate;
-
-    
+    MG, 
+    RG,
+    PS
+}
+public abstract class Weapon : ScriptableObject
+{
+    //stats
+    public float damage;
+    public uint maxAmmo;
+    public float fireRate;
+    public float reloadTime;
+    public WeaponTypes type;
+    public GameObject projectilePrefab;
+    public abstract void fireWeapon(PlayerController controller);
 
 }

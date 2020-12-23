@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 2898459462297125239, guid: f6a84f3a5c798814dba4cb6d23a418b1, type: 3}
   material: {fileID: 670224309865224971, guid: f6a84f3a5c798814dba4cb6d23a418b1, type: 3}
+  weapons:
+  - {fileID: 11400000, guid: fb246b84c287e7540bd67f8589922b14, type: 2}
+  - {fileID: 11400000, guid: 404e8aab5fe22aa43ae05163111fa75a, type: 2}
+  - {fileID: 11400000, guid: 676bd24ca3fb9fe419883cf0ef06c17e, type: 2}
   health: 100
   mass: 1
   thrustForce: 5
