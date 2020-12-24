@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d10e9e90fcbad47b4a33e3775d268e, type: 3}
   m_Name: Anders
   m_EditorClassIdentifier: 
-  mesh: {fileID: 2898459462297125239, guid: f6a84f3a5c798814dba4cb6d23a418b1, type: 3}
-  material: {fileID: 670224309865224971, guid: f6a84f3a5c798814dba4cb6d23a418b1, type: 3}
+  prefab: {fileID: 8688700633811172783, guid: 57496c325d280b74585f5f637ee10a9c, type: 3}
+  automaticKeneticWeaponBarrels: []
+  plasmaWeaponBarrel: {fileID: 0}
+  chargedWeaponBarrel: {fileID: 0}
   weapons:
   - {fileID: 11400000, guid: fb246b84c287e7540bd67f8589922b14, type: 2}
   - {fileID: 11400000, guid: 404e8aab5fe22aa43ae05163111fa75a, type: 2}
@@ -21,5 +23,3 @@ MonoBehaviour:
   health: 100
   mass: 1
   thrustForce: 5
-  shieldPower: 30
-  rechargeRate: 1

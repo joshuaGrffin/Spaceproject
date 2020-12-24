@@ -2,9 +2,14 @@
 [CreateAssetMenu(fileName = "ShipDef", menuName = "CreateShip/ShipDef")]
 public class Ship : ScriptableObject
 {
-    public Mesh mesh;
-    public Material material;
-    //Weapons here (max 3?) 
+    //used by displayer
+    public GameObject prefab;
+
+    public GameObject[] automaticKeneticWeaponBarrels;
+    public GameObject plasmaWeaponBarrel;
+    public GameObject chargedWeaponBarrel;
+
+    //Weapons here used by controllers
     public Weapon[] weapons; 
     #region stats
     public float health;

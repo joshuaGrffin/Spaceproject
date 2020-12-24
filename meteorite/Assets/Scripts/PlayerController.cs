@@ -13,6 +13,13 @@ public class PlayerController : MonoBehaviour
     float thrust;
     float health;
 
+    [SerializeField]
+    Transform[] MGBarrels;
+    [SerializeField]
+    Transform PSBarrel;
+    [SerializeField]
+    Transform chargedShotBarrel;
+
 
     //to be removed once game manager is created
     [SerializeField]
@@ -35,7 +42,8 @@ public class PlayerController : MonoBehaviour
     uint currentAmmo;
     float reloadTime;
     float fireRate;
-    
+
+    bool canSwitch = true;
     bool canFire = true;
 
     private void Start()
@@ -74,6 +82,8 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(reloadWeapon(reloadTime));
         }
+
+        //switch to the pInput var
         if (Input.GetButton("Fire1"))
         {
             if (canFire)
@@ -83,23 +93,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void nextWeapon()
-    {
-        weaponIndex++;
-        if (weaponIndex > shipDef.weapons.Length - 1)
-        {
-            weaponIndex = 0;
-        }
-        if (AmmoReamainingOnSwitch.ContainsKey(currentWeapon))
-        {
-            AmmoReamainingOnSwitch[currentWeapon] = currentAmmo;
-        }
-        else
-        {
-            AmmoReamainingOnSwitch.Add(currentWeapon, currentAmmo);
-        }
-        initWeapon(shipDef.weapons[weaponIndex]);
-    }
+   
 
 
     void rotate() {
@@ -136,6 +130,26 @@ public class PlayerController : MonoBehaviour
             currentAmmo = currentWeapon.maxAmmo;
         }
         print(currentAmmo.ToString());
+    }
+    void nextWeapon()
+    {
+        if (canSwitch)
+        {
+            weaponIndex++;
+            if (weaponIndex > shipDef.weapons.Length - 1)
+            {
+                weaponIndex = 0;
+            }
+            if (AmmoReamainingOnSwitch.ContainsKey(currentWeapon))
+            {
+                AmmoReamainingOnSwitch[currentWeapon] = currentAmmo;
+            }
+            else
+            {
+                AmmoReamainingOnSwitch.Add(currentWeapon, currentAmmo);
+            }
+            initWeapon(shipDef.weapons[weaponIndex]);
+        }
     }
 
     public void ShootRailGun()
@@ -175,25 +189,40 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator reloadWeapon(float reloadTimer)
     {
+        canSwitch = false;
         canFire = false;
         yield return new WaitForSeconds(reloadTimer);
         currentAmmo = currentWeapon.maxAmmo;
+        canFire = true;
+        canSwitch = true;
     }
 
     IEnumerator chargedShot(float timeTillShot)
     {
+        canSwitch = false;
         canFire = false;
         yield return new WaitForSecondsRealtime(timeTillShot);
         print("fired " + currentWeapon.name);
-        //instantiate bullet / projectile 
+        //sphere cast (like a raycast but wider
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, 1, transform.up * 100, out hit))
+        {
+            print(hit.collider.gameObject.name);
+            Debug.DrawLine(transform.position, hit.collider.transform.position, Color.red, 10);
+        }
+        Debug.DrawLine(transform.position, transform.up * 100, Color.red);
+
         currentAmmo--;
+        canSwitch = true;
         canFire = true;
     }
 
     IEnumerator AutomaticFire(float firerate)
     {
         canFire = false;
+        canSwitch = false;
         yield return new WaitForSeconds(firerate);
+        canSwitch = true;
         canFire = true;
     }
 
@@ -201,4 +230,6 @@ public class PlayerController : MonoBehaviour
     {
         health -= damage;
     }
+
+    
 }
